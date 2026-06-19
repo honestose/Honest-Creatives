@@ -1,0 +1,153 @@
+import { ServiceDetail, Testimonial } from '../types';
+
+export const servicesData: Record<string, ServiceDetail> = {
+  'website-design': {
+    id: 'website-design',
+    title: 'Website Design',
+    shortDescription: 'Stunning, high-performance, and mobile-friendly web architectures tailored to your business goals.',
+    description: 'At Honest Creatives, we believe a website is your digital business card and a high-converting salesperson rolled into one. We construct visually spectacular, speed-optimized website experiences that work fluidly across ultra-wide monitors, tablets, and smartphones alike.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Tailwind CSS & React Responsive Frontends',
+      'Custom UX/UI Visual Mapping & Hotspot Optimization',
+      'Ultra-Fast Loading Speeds & Core Web Vitals Optimization',
+      'Full-Scale E-Commerce Architectures',
+      'Content Management Systems (CMS) Integrations',
+      'Automated SEO-Friendly Semantic Codebases'
+    ],
+    process: [
+      { step: '01', title: 'Consultation & Flow mapping', desc: 'Understanding your user journeys and identifying visual benchmarks.' },
+      { step: '02', title: 'High-Fidelity Wireframes', desc: 'Synthesizing grid layouts, micro-interactions, and visual guidelines.' },
+      { step: '03', title: 'Modern Clean Development', desc: 'Writing clean, declarative React layouts supported by fluid styling.' },
+      { step: '04', title: 'Performance Testing', desc: 'Strict verification of speed, SEO compliance, and responsiveness.' }
+    ],
+    faqs: [
+      { question: 'Will my website work perfectly on smart phones?', answer: 'Absolutely. Every single design is compiled mobile-first, ensuring smooth navigation, adaptive interfaces, and oversized touch targets.' },
+      { question: 'Do you offer maintenance and updates after launching?', answer: 'Yes, we provide ongoing, transparent tech support and rapid adjustment services to keep your website secured and up to date.' }
+    ]
+  },
+  'digital-design': {
+    id: 'digital-design',
+    title: 'Digital Design',
+    shortDescription: 'Captivating visual branding, logos, graphic design, and marketing collateral with an editorial feel.',
+    description: 'We shape the visual identity of businesses that dare to stand out. Our digital design processes combine typography pairings, handpicked color palettes, and structural layouts to establish a distinctive brand voice across all touchpoints.',
+    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Bespoke Brand Book & Visual Identity Design',
+      'Logo Systems (Primary, Secondary, and Monogram versions)',
+      'High-Impact Social Media Content Templates',
+      'Editorial Pitch Decks & Digital Catalogues',
+      'Custom Vector Assets & Layout Graphics',
+      'Modern Motion Design & Interactive Typography'
+    ],
+    process: [
+      { step: '01', title: 'Mood Boarding', desc: 'Aligning on visual vibrations, historic styles, or modern futuristic themes.' },
+      { step: '02', title: 'Concept Formulation', desc: 'Sieving multiple design paths down into three highly refined options.' },
+      { step: '03', title: 'Refinement & Typography Styling', desc: 'Tweaking details, verifying margins, and configuring font scales.' },
+      { step: '04', title: 'Delivery & Brand Guide', desc: 'Providing vector masterfiles, SVG assets, and instructions for use.' }
+    ],
+    faqs: [
+      { question: 'Do I get ownership of the visual files and assets?', answer: 'Yes! Upon project termination, you receive complete intellectual property and vector raw source files.' },
+      { question: 'Can you work within our existing design foundations?', answer: 'Certainly. We can modernize, scale, or enrich your pre-existing brand foundations while maintaining brand recognition.' }
+    ]
+  },
+  'digital-marketing': {
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    shortDescription: 'ROI-driven growth campaigns, social media management, and precision advertising.',
+    description: 'Stop wasting budget on general campaigns. Honest Creatives creates highly targeted, data-backed marketing systems that place your brand right in front of qualified customers. We focus on transparent performance, clear metrics, and creative storytelling.',
+    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Hyper-Targeted Pay-Per-Click Advertising (Facebook, IG, Google)',
+      'End-to-End Social Media Content Scheduling & Management',
+      'Custom Email Marketing Automations and Funnels',
+      'Influencer Coordination & Creative Briefings',
+      'Conversion Rate Optimization (CRO) on Landing Pages',
+      'Honest, Detailed Analytics and ROI Dashboard Reporting'
+    ],
+    process: [
+      { step: '01', title: 'Competitor Intelligence', desc: 'Discovering where your market is underplaying search and social platforms.' },
+      { step: '02', title: 'Creative Assets Setup', desc: 'Constructing high-impact copylines, video hooks, and graphics.' },
+      { step: '03', title: 'Phased Launch & Testing', desc: 'Deploying small-scale tests to identify high-performing customer pockets.' },
+      { step: '04', title: 'Scaling Campaigns', desc: 'Dumping resources into winning structures to maximize lead capture.' }
+    ],
+    faqs: [
+      { question: 'What is the recommended minimum ad budget?', answer: 'We customize marketing approaches to your capabilities, but we advise starting with at least $300 - $500 monthly to gather meaningful data.' },
+      { question: 'How do you measure success?', answer: 'We track raw conversions, cost-per-acquisition (CPA), and overall return on ad spend (ROAS) rather than empty impressions.' }
+    ]
+  },
+  'seo': {
+    id: 'seo',
+    title: 'SEO Services',
+    shortDescription: 'Rank higher organically on Google and capture steady, intent-driven customer organic search traffic.',
+    description: 'When people look for your solution on Google, be the first answer they read. Honest Creatives deploys on-page and off-page search engine optimization campaigns built to create steady organic growth on modern search landscapes.',
+    image: 'https://images.unsplash.com/photo-1471897488648-5eae4ac6686b?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Technical SEO Code Audits & Speed Repairs',
+      'Exhaustive Local Keyword and Intent Strategy Research',
+      'Semantic On-Page Content Structuring & Schema Markup',
+      'Continuous Competitor Tracking & Keyword Rank Logging',
+      'Ethical Link Building campaigns & Brand Mention Captures',
+      'Google Search Console & Analytics Synchronizations'
+    ],
+    process: [
+      { step: '01', title: 'Technical Deep Dive', desc: 'Removing code dead-weight or broken index paths from your website.' },
+      { step: '02', title: 'Intent Mapping', desc: 'Determining exact words prospects search when ready to make decisions.' },
+      { step: '03', title: 'On-Page Upgrades', desc: 'Rewriting meta structures, heading orders, and contextual backlinks.' },
+      { step: '04', title: 'Continuous Growth Tracking', desc: 'Expanding content logs, local maps reach, and backlink authority.' }
+    ],
+    faqs: [
+      { question: 'How quickly will we see SEO progress?', answer: 'SEO is an organic escalator. Real technical fixes yield index updates in weeks, while massive competitive ranking shifts usually settle in 3 to 6 months.' },
+      { question: 'Does SEO work for localized physical businesses?', answer: 'Yes! Our custom Local SEO strategy maps your physical locations directly into Google Maps queries for nearby users.' }
+    ]
+  },
+  'event-planning': {
+    id: 'event-planning',
+    title: 'Event Planning Services',
+    shortDescription: 'Memorable brand experiences, corporate celebrations, workspace openings, and aesthetic activations.',
+    description: 'We believe memorable experiences bridge the divide between local brands and modern cultures. Honest Creatives plans and styles custom event activations, designing elegant spaces, physical touchpoints, and smooth schedules.',
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Complete Theme Formulation & Visual Scenography',
+      'Modern Vendor Sourcing & Secure Contracts Management',
+      'Physical Stage Layouts, Audio Visual mappings & Ambient Lighting Design',
+      'Seamless Live Flow Itinerary coordination & Staff briefing',
+      'Digital Registration Platforms & Custom Landing Funnels',
+      'High-Impact On-Site Brand Photo Opportunistic design'
+    ],
+    process: [
+      { step: '01', title: 'Experiential Objective Map', desc: 'Nailing the direct feeling and story you want guests to walk away with.' },
+      { step: '02', title: 'Space Sourcing & Styling Layout', desc: 'Selecting appropriate spaces and planning custom visual setups.' },
+      { step: '03', title: 'Coordination Matrix', desc: 'Assembling schedules, locking in sound tech, host, catering, and decor.' },
+      { step: '04', title: 'Real-Time Event Command', desc: 'Directing behind-the-scenes staff so you focus entirely on your guests.' }
+    ],
+    faqs: [
+      { question: 'What sort of event budgets do you accommodate?', answer: 'We formulate events spanning boutique visual workshops to major corporate product launches, tailoring production density appropriately.' },
+      { question: 'How far in advance should we start planning?', answer: 'For corporate events and bespoke brand activations, starting 2 to 4 months in advance ensures high vendor availability.' }
+    ]
+  }
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    name: 'Segun Adebayo',
+    company: 'Alpha Nexus',
+    role: 'Managing Director',
+    quote: 'Honest Creatives restructured our fully outdated brand identity and completed an stunning mobile website. Their level of visual craftsmanship, patience, and clear updates surpassed our high standard expectations.',
+    rating: 5
+  },
+  {
+    name: 'Chidi Okafor',
+    company: 'Peak Horizon Group',
+    role: 'Founder',
+    quote: 'Thanks to their analytical SEO and robust digital marketing setups, our service leads spiked over 180% within three months. True to their name, they are extremely transparent and data-oriented.',
+    rating: 5
+  },
+  {
+    name: 'Amara Diogu',
+    company: 'AURA Spaces',
+    role: 'Head of Brand Experience',
+    quote: 'Their technical scenography and precise coordination for our Lagos workspace lounge launch was magnificent. Our guests were mesmerized by the ambient spatial branding.',
+    rating: 5
+  }
+];
