@@ -12,31 +12,5 @@
 </html>
 
 
-   function glueCookieNotificationBarLoaded() {
-        const {instance} = window.glue.CookieNotificationBar;
-        instance.listen('visibilitychange', (event) => {
-          const cookieBanner = document.getElementsByClassName('glue-cookie-notification-bar')[0];
-          if (event.detail.visible) {
-            cookieBanner.classList.add('visible');
-          } else {
-            cookieBanner.classList.remove('visible');
-          }
-        });
 
-        (function (w, d, s, l) {
-          w[l] = w[l] || [];
-          w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '',
-            e=d.querySelector('script[nonce]'),n=e&&(e['nonce']||e.getAttribute('nonce'));
-          j.async = true;
-          j.setAttribute('nonce', n);
-          if (self.trustedTypes && self.trustedTypes.createPolicy) {var policy = self.trustedTypes.createPolicy('aistudio', {createScriptURL: function(unused) { return 'https:\/\/www.googletagmanager.com\/gtm.js?id\x3dGTM-TT9C75WP'; }}); j.src = policy.createScriptURL('');} else {j.src = 'https:\/\/www.googletagmanager.com\/gtm.js?id\x3dGTM-TT9C75WP';}
-
-          f.parentNode.insertBefore(j, f);
-
-          window[l].push({'event': 'dataLayer_initialized', 'page_name': 'Google AI Studio'});
-        })(window, document, 'script', 'dataLayer');
-      }
-    </script><!-- Cookie Consent --><script src="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.js" data-glue-cookie-notification-bar-category="2A" data-glue-cookie-notification-bar-site-id="Google AI Studio" nonce="G38-Nr8frEjmErdNH7r63Q"></script><!-- End Cookie Consent  --><script nonce="G38-Nr8frEjmErdNH7r63Q">var AF_initDataKeys = window.AF_initDataKeys || {}; var AF_dataServiceRequests = window.AF_dataServiceRequests || {}; var AF_initDataChunkQueue = window.AF_initDataChunkQueue || {}; var AF_initDataCallback = window.AF_initDataCallback || {}; var AF_initDataInitializeCallback = window.AF_initDataInitializeCallback || {}; AF_initDataKeys['a48ea054-b8eb-488f-b357-9dafbcaadd38'] = []; AF_dataServiceRequests['a48ea054-b8eb-488f-b357-9dafbcaadd38'] = {}; AF_initDataChunkQueue['a48ea054-b8eb-488f-b357-9dafbcaadd38'] = AF_initDataChunkQueue['a48ea054-b8eb-488f-b357-9dafbcaadd38'] || []; if (AF_initDataInitializeCallback['a48ea054-b8eb-488f-b357-9dafbcaadd38']) {AF_initDataInitializeCallback['a48ea054-b8eb-488f-b357-9dafbcaadd38'](AF_initDataKeys['a48ea054-b8eb-488f-b357-9dafbcaadd38'], AF_initDataChunkQueue['a48ea054-b8eb-488f-b357-9dafbcaadd38'], AF_dataServiceRequests['a48ea054-b8eb-488f-b357-9dafbcaadd38']);}if (!AF_initDataCallback['a48ea054-b8eb-488f-b357-9dafbcaadd38']) {AF_initDataCallback['a48ea054-b8eb-488f-b357-9dafbcaadd38'] = function(chunk) {AF_initDataChunkQueue['a48ea054-b8eb-488f-b357-9dafbcaadd38'].push(chunk);};}</script></head><app-root></app-root><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9C75WP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script src="https://www.gstatic.com/_/mss/boq-makersuite/_/js/k=boq-makersuite.MakerSuite.en.8QUPbymtC4U.2018.O/am=wwU/d=1/excm=_b/ed=1/dg=0/br=1/wt=2/ujg=1/rs=AMOXD28T0QYoA6i2c7W3oNbIE5V4QzLotw/dti=1/m=_b" id="base-js" data-scope-id="a48ea054-b8eb-488f-b357-9dafbcaadd38" nonce="G38-Nr8frEjmErdNH7r63Q"></script></body></html>
+       
