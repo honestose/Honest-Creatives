@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
 import ContactForm from './ContactForm';
 
@@ -7,6 +8,8 @@ interface ContactViewProps {
 }
 
 export default function ContactView({ theme = 'light', customContent }: ContactViewProps) {
+  const [activeFaqIndex, setActiveFaqIndex] = useState<number | null>(null);
+
   return (
     <div className={`w-full py-16 sm:py-24 transition-colors duration-300 animate-in fade-in duration-300 ${
       theme === 'dark' ? 'bg-neutral-950 text-stone-100' : 'bg-white text-black'
@@ -36,7 +39,7 @@ export default function ContactView({ theme = 'light', customContent }: ContactV
             )}
           </h1>
           <div className="w-12 h-1 bg-orange-500 rounded-full"></div>
-          <p className={`text-sm sm:text-base leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
+          <p className={`text-sm sm:text-base leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>
             {customContent?.contactSubtitle || "We operate with absolute transparency. Talk directly to our directors to map out website designs, check your SEO health, plan creative ad budgets, or stage outstanding live coordinates."}
           </p>
         </div>
@@ -68,7 +71,7 @@ export default function ContactView({ theme = 'light', customContent }: ContactV
                   }`}>
                     support@honestcreatives.com.ng
                   </a>
-                  <p className={`text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Send us your technical specs, RFPs, or event briefs anytime.</p>
+                  <p className={`text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>Send us your technical specs, RFPs, or event briefs anytime.</p>
                 </div>
               </div>
 
@@ -86,7 +89,7 @@ export default function ContactView({ theme = 'light', customContent }: ContactV
                   }`}>
                     (+234) 915 649 8230
                   </a>
-                  <p className={`text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Talk directly with a senior specialist. Active weekdays 8AM — 6PM WAT.</p>
+                  <p className={`text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>Talk directly with a senior specialist. Active weekdays 8AM — 6PM WAT.</p>
                 </div>
               </div>
 
@@ -102,7 +105,7 @@ export default function ContactView({ theme = 'light', customContent }: ContactV
                   <address className={`not-italic text-sm font-bold font-display leading-relaxed ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
                     4 Ino Ingang Cl, Adeba Bus Stop, Lakowe, Ibeju Lekki, Lagos, Nigeria
                   </address>
-                  <p className={`text-xs mt-1 ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Visit our administrative lounge for direct event mapping workshops.</p>
+                  <p className={`text-xs mt-1 ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>Visit our administrative lounge for direct event mapping workshops.</p>
                 </div>
               </div>
             </div>
@@ -124,6 +127,60 @@ export default function ContactView({ theme = 'light', customContent }: ContactV
             <ContactForm theme={theme} />
           </div>
 
+        </div>
+
+        {/* Dynamic Accordion FAQs on Contact Us page */}
+        <div className={`mt-24 pt-16 border-t ${theme === 'dark' ? 'border-neutral-850' : 'border-stone-200'}`} id="contact-faq-section">
+          <div className="max-w-4xl mx-auto text-center space-y-3.5 mb-12">
+            <span className="text-xs uppercase font-mono tracking-widest text-orange-500 font-bold bg-orange-50 dark:bg-orange-950/20 px-2 py-0.5 rounded-sm">
+              CONTACT FAQS & TRUTHS
+            </span>
+            <h2 className={`text-2xl sm:text-3xl font-extrabold font-display ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
+              Inquiry <span className="text-orange-500">Clarifications</span>
+            </h2>
+            <div className="w-12 h-1 bg-orange-500 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="space-y-4 max-w-3xl mx-auto text-left">
+            {[
+              {
+                q: 'How quickly can we expect a response to our creative brief?',
+                a: 'We review all submissions immediately. Our creative director or lead developer will contact you via email or active hotline within 24 working hours to schedule a diagnostic briefing session.'
+              },
+              {
+                q: 'Do you charge audit fees for the initial project scoping?',
+                a: 'No. We believe in building a solid trust baseline. Your first briefing session and initial scope/SEO diagnostic checking are 100% free of charge and carry no obligation.'
+              },
+              {
+                q: 'Can we arrange an in-person workshop at your Lagos studio office?',
+                a: 'Yes, absolutely. We welcome physical briefings at our studio office (4 Ino Ingang Cl, Adeba Bus Stop, Lakowe, Ibeju Lekki, Lagos, Nigeria). Please specify your preferred date in the form so we can confirm specialist availability.'
+              }
+            ].map((item, index) => {
+              const isOpened = activeFaqIndex === index;
+              return (
+                <div
+                  key={index}
+                  className="bg-white border border-stone-250 rounded-sm overflow-hidden text-left transition-all duration-200 shadow-xs"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setActiveFaqIndex(isOpened ? null : index)}
+                    className="w-full p-5 flex justify-between items-center text-xs font-black uppercase tracking-tight text-black focus:outline-none cursor-pointer hover:bg-stone-50"
+                  >
+                    <span className="text-black">{item.q}</span>
+                    <span className="text-orange-500 text-lg font-mono leading-none">
+                      {isOpened ? '−' : '+'}
+                    </span>
+                  </button>
+                  {isOpened && (
+                    <div className="p-5 pt-0 text-xs leading-relaxed text-black font-semibold border-t border-stone-150 animate-in slide-in-from-top-1">
+                      {item.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
       </div>

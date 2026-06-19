@@ -99,7 +99,7 @@ export default function ContactForm({ theme = 'light' }: ContactFormProps) {
           </div>
           <div className="space-y-2.5 max-w-sm">
             <h3 className={`text-2xl font-bold font-display ${theme === 'dark' ? 'text-white' : 'text-neutral-950'}`}>Inquiry Received!</h3>
-            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
+            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>
               Hey <span className="font-bold text-orange-500">{formData.name}</span>, your inquiry has been logged successfully. One of our Honest Creative specialists will analyze your objective and follow up in under 24 working hours.
             </p>
           </div>
@@ -125,14 +125,14 @@ export default function ContactForm({ theme = 'light' }: ContactFormProps) {
             <h3 className={`text-xl font-bold font-display ${theme === 'dark' ? 'text-white' : 'text-neutral-950'}`}>
               Start Your Project with <span className="text-orange-500">Honest Creatives</span>
             </h3>
-            <p className="text-stone-400 text-xs text-left">Fill out the brief below, and let us shape your vision into high-impact digital products.</p>
+            <p className={`text-xs text-left ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>Fill out the brief below, and let us shape your vision into high-impact digital products.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" id="form-grid-demographics">
             {/* Full Name */}
             <div className="space-y-2" id="input-group-name">
               <label htmlFor="contact-name" className={`block text-xs font-mono uppercase tracking-wider font-bold ${
-                theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'
               }`}>
                 Your Full Name <span className="text-red-500">*</span>
               </label>
@@ -156,7 +156,7 @@ export default function ContactForm({ theme = 'light' }: ContactFormProps) {
             {/* Email */}
             <div className="space-y-2" id="input-group-email">
               <label htmlFor="contact-email" className={`block text-xs font-mono uppercase tracking-wider font-bold ${
-                theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'
               }`}>
                 Email Address <span className="text-red-500">*</span>
               </label>
@@ -182,7 +182,7 @@ export default function ContactForm({ theme = 'light' }: ContactFormProps) {
             {/* Phone */}
             <div className="space-y-2" id="input-group-phone">
               <label htmlFor="contact-phone" className={`block text-xs font-mono uppercase tracking-wider font-bold ${
-                theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'
               }`}>
                 Active Mobile Number
               </label>
@@ -205,7 +205,7 @@ export default function ContactForm({ theme = 'light' }: ContactFormProps) {
             {/* Service Dropdown */}
             <div className="space-y-2" id="input-group-service">
               <label htmlFor="contact-service" className={`block text-xs font-mono uppercase tracking-wider font-bold ${
-                theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'
               }`}>
                 Service of Interest
               </label>
@@ -233,7 +233,7 @@ export default function ContactForm({ theme = 'light' }: ContactFormProps) {
           {/* Message Brief */}
           <div className="space-y-2" id="input-group-message">
             <label htmlFor="contact-message" className={`block text-xs font-mono uppercase tracking-wider font-bold ${
-              theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+              theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'
             }`}>
               Briefly describe your objectives or event timeline <span className="text-red-500">*</span>
             </label>

@@ -1,4 +1,5 @@
-import { Shield, Sparkles, Sliders, Compass } from 'lucide-react';
+import { useState } from 'react';
+import { Shield, Sparkles, Sliders, Compass, HelpCircle } from 'lucide-react';
 import { ActiveTab } from '../types';
 
 interface AboutViewProps {
@@ -8,6 +9,8 @@ interface AboutViewProps {
 }
 
 export default function AboutView({ setActiveTab, theme = 'light', customContent }: AboutViewProps) {
+  const [activeFaqIndex, setActiveFaqIndex] = useState<number | null>(null);
+  
   const coreValues = [
     {
       icon: <Shield size={20} className="text-orange-500" />,
@@ -86,7 +89,7 @@ export default function AboutView({ setActiveTab, theme = 'light', customContent
               </h1>
               <div className="w-12 h-1 bg-orange-500 rounded-full"></div>
               <p className={`text-sm sm:text-base leading-relaxed max-w-2xl ${
-                theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                theme === 'dark' ? 'text-stone-300' : 'text-black font-medium'
               }`}>
                 {customContent?.aboutIntro || "Honest Creatives is a cross-functional agency based in Lagos, Nigeria. We bridge the critical gap between high-level brand styling and engineering perfection. We don’t just sketch pretty pictures; we code robust React web platforms, deploy conversion-driven marketing architectures, and direct premium life event spaces."}
               </p>
@@ -98,7 +101,7 @@ export default function AboutView({ setActiveTab, theme = 'light', customContent
               }`} id="about-statement-badge">
                 <Compass className="text-orange-500 mb-4" size={24} />
                 <h3 className={`font-bold text-sm tracking-tight ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>Our Governing Focus</h3>
-                <p className={`text-xs leading-relaxed mt-2 ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
+                <p className={`text-xs leading-relaxed mt-2 ${theme === 'dark' ? 'text-stone-400' : 'text-black font-medium'}`}>
                   "Ensure that every design asset, code file, campaign projection, and vendor contract is fully honest, transparent, and profitable for the client."
                 </p>
               </div>
@@ -143,7 +146,7 @@ export default function AboutView({ setActiveTab, theme = 'light', customContent
               <h3 className={`font-bold text-sm font-display mb-2.5 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
                 {val.title}
               </h3>
-              <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
+              <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>
                 {val.desc}
               </p>
             </div>
@@ -167,7 +170,7 @@ export default function AboutView({ setActiveTab, theme = 'light', customContent
                 <span className="text-orange-500 font-bold">Digital Bloat.</span>
               </h2>
               <div className="w-12 h-1 bg-orange-500 rounded-full"></div>
-              <p className="text-stone-450 text-xs leading-relaxed">
+              <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-450' : 'text-black font-semibold'}`}>
                 We believe in simple processes, transparent operations, and deep competence. Here is the operational trajectory driving our solutions forward.
               </p>
             </div>
@@ -188,7 +191,7 @@ export default function AboutView({ setActiveTab, theme = 'light', customContent
                   </div>
                   <div className="space-y-1.5 flex-1">
                     <h3 className={`font-bold text-sm font-display ${theme === 'dark' ? 'text-white' : 'text-neutral-950'}`}>{item.title}</h3>
-                    <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
+                    <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>
                       {item.desc}
                     </p>
                   </div>
@@ -196,6 +199,62 @@ export default function AboutView({ setActiveTab, theme = 'light', customContent
               ))}
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Dynamic Accordion FAQs on About Us page */}
+      <section className={`py-16 sm:py-20 border-b ${theme === 'dark' ? 'bg-neutral-900/15 border-neutral-850' : 'bg-stone-50 border-stone-200'}`} id="about-faq-section">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 mt-2">
+          <div className="text-center space-y-3.5 mb-12">
+            <span className="text-xs uppercase font-mono tracking-widest text-orange-500 font-bold bg-orange-50 dark:bg-orange-950/20 px-2 py-0.5 rounded-sm">
+              ABOUT FAQS & TRUTHS
+            </span>
+            <h2 className={`text-2xl sm:text-3xl font-extrabold font-display ${theme === 'dark' ? 'text-white' : 'text-neutral-950'}`}>
+              Agency <span className="text-orange-500">Questions</span>
+            </h2>
+            <div className="w-12 h-1 bg-orange-500 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="space-y-4 max-w-3xl mx-auto pb-6">
+            {[
+              {
+                q: 'Who founded Honest Creatives and where are you based?',
+                a: 'Honest Creatives was founded by highly experienced design professionals and senior stack developers based in Nigeria. Our studio is situated at 4 Ino Ingang Cl, Adeba Bus Stop, Lakowe, Ibeju Lekki, Lagos, Nigeria. We host branding sessions, technical briefings, and consult with local and global commercial partners.'
+              },
+              {
+                q: 'What is your operational philosophy regarding client communications?',
+                a: 'Total honesty. We have zero hidden retainers or silent developer surcharges. If a project timeline needs structural padding or standard social campaign costs fluctuate, our directors discuss details with you directly. You are always in coordinate control.'
+              },
+              {
+                q: 'Do you work with startups as well as established corporate teams?',
+                a: 'Yes, we scale our frameworks depending on business maturity. We supply fast mvps for funded startups, as well as complex brand identity files, SEO mappings, and large-scale experiential coordination setups for established enterprises.'
+              }
+            ].map((item, index) => {
+              const isOpened = activeFaqIndex === index;
+              return (
+                <div
+                  key={index}
+                  className="bg-white border border-stone-250 rounded-sm overflow-hidden text-left transition-all duration-200 shadow-xs"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setActiveFaqIndex(isOpened ? null : index)}
+                    className="w-full p-5 flex justify-between items-center text-xs font-black uppercase tracking-tight text-black focus:outline-none cursor-pointer hover:bg-stone-50"
+                  >
+                    <span className="text-black">{item.q}</span>
+                    <span className="text-orange-500 text-lg font-mono leading-none">
+                      {isOpened ? '−' : '+'}
+                    </span>
+                  </button>
+                  {isOpened && (
+                    <div className="p-5 pt-0 text-xs leading-relaxed text-black font-semibold border-t border-stone-150 animate-in slide-in-from-top-1">
+                      {item.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -53,7 +53,7 @@ export default function ServicesView({ activeTab, setActiveTab, theme = 'light' 
                 Honest <span className="text-orange-500">{currentService.title}</span> Solutions
               </h1>
               <p className={`text-sm sm:text-base leading-relaxed max-w-xl ${
-                theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                theme === 'dark' ? 'text-stone-300' : 'text-black font-medium'
               }`}>
                 {currentService.description}
               </p>
@@ -104,7 +104,7 @@ export default function ServicesView({ activeTab, setActiveTab, theme = 'light' 
               Technical & Tactical <span className="text-orange-500">Deliverables</span>
             </h2>
             <div className="w-12 h-1 bg-orange-500 rounded-full"></div>
-            <p className="text-stone-450 text-xs leading-relaxed max-w-xs">
+            <p className={`text-stone-450 text-xs leading-relaxed max-w-xs ${theme === 'dark' ? 'text-stone-450' : 'text-black font-semibold'}`}>
               Every package is designed custom to your operational challenges. Here is what we systematically build, integrate, and verify.
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function ServicesView({ activeTab, setActiveTab, theme = 'light' 
                 </div>
                 <div className="space-y-1">
                   <h4 className={`font-bold text-sm leading-tight ${theme === 'dark' ? 'text-stone-100' : 'text-neutral-900'}`}>{feature}</h4>
-                  <p className="text-stone-450 text-xs leading-relaxed">Fully aligned with modern quality checklists, zero shortcuts.</p>
+                  <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-450' : 'text-black font-semibold'}`}>Fully aligned with modern quality checklists, zero shortcuts.</p>
                 </div>
               </div>
             ))}
@@ -141,7 +141,7 @@ export default function ServicesView({ activeTab, setActiveTab, theme = 'light' 
             }`}>
               The <span className="text-orange-500">Honest Execution</span> Process
             </h2>
-            <p className="text-stone-400 text-xs sm:text-sm max-w-md mx-auto">
+            <p className={`text-xs sm:text-sm max-w-md mx-auto ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>
               How we take your blueprint from initial consultative audit to live production.
             </p>
           </div>
@@ -159,7 +159,7 @@ export default function ServicesView({ activeTab, setActiveTab, theme = 'light' 
                 <div className="space-y-3 pt-6 text-left">
                   <span className="text-[9px] font-mono uppercase tracking-wider text-orange-500 font-bold">Phase {p.step}</span>
                   <h3 className={`font-bold text-sm font-display leading-tight ${theme === 'dark' ? 'text-white' : 'text-neutral-950'}`}>{p.title}</h3>
-                  <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
+                  <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>
                     {p.desc}
                   </p>
                 </div>
@@ -179,16 +179,14 @@ export default function ServicesView({ activeTab, setActiveTab, theme = 'light' 
           }`}>
             Frequently Asked <span className="text-orange-500">Questions</span>
           </h2>
-          <p className="text-stone-400 text-xs">Direct, straightforward answers regarding {currentService.title}.</p>
+          <p className={`text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-black font-semibold'}`}>Direct, straightforward answers regarding {currentService.title}.</p>
         </div>
 
         <div className={`space-y-4 max-w-3xl mx-auto text-left lg:border-t lg:pt-8 ${
           theme === 'dark' ? 'border-neutral-900' : 'border-stone-150'
         }`} id="faqs-list">
           {currentService.faqs.map((faq, index) => (
-            <div key={index} className={`p-5 border rounded-sm flex gap-4 items-start transition-colors ${
-              theme === 'dark' ? 'bg-neutral-900/50 border-neutral-800' : 'bg-stone-50 border-stone-200'
-            }`} id={`faq-accordion-${index}`}>
+            <div key={index} className="p-5 bg-white border border-stone-200 rounded-sm flex gap-4 items-start transition-colors" id={`faq-accordion-${index}`}>
               <HelpCircle className="text-orange-500 shrink-0 mt-0.5" size={18} />
               <div className="space-y-1.5 text-left">
                 <h4 className={`font-bold text-sm font-display text-black dark:text-black`}>{faq.question}</h4>

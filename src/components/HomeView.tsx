@@ -340,7 +340,7 @@ export default function HomeView({ setActiveTab, theme = 'light', customContent 
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-stone-200/40 dark:border-neutral-800 text-xs font-mono text-stone-500 flex justify-between" id="dashboard-footing-meta">
+              <div className={`mt-8 pt-6 border-t border-stone-200/40 dark:border-neutral-800 text-xs font-mono flex justify-between ${theme === 'dark' ? 'text-stone-500' : 'text-black font-semibold'}`} id="dashboard-footing-meta">
                 <span>VERIFICATION: SECURE</span>
                 <span>LAGOS & BEYOND</span>
               </div>
@@ -630,22 +630,20 @@ export default function HomeView({ setActiveTab, theme = 'light', customContent 
               return (
                 <div
                   key={index}
-                  className={`border rounded-sm overflow-hidden text-left transition-all duration-200 ${
-                    theme === 'dark' ? 'bg-neutral-905 border-neutral-850 shadow-inner' : 'bg-white border-stone-250 shadow-xs'
-                  }`}
+                  className="bg-white border border-stone-250 rounded-sm overflow-hidden text-left transition-all duration-200 shadow-xs"
                 >
                   <button
                     type="button"
                     onClick={() => setActiveFaqIndex(isOpened ? null : index)}
-                    className={`w-full p-5 flex justify-between items-center text-xs font-black uppercase tracking-tight text-black dark:text-black focus:outline-none cursor-pointer hover:bg-stone-50 dark:hover:bg-stone-100 ${isOpened ? 'bg-orange-500/5' : ''}`}
+                    className={`w-full p-5 flex justify-between items-center text-xs font-black uppercase tracking-tight text-black focus:outline-none cursor-pointer hover:bg-stone-50 ${isOpened ? 'bg-orange-500/5' : ''}`}
                   >
-                    <span>{item.q}</span>
+                    <span className="text-black">{item.q}</span>
                     <span className="text-orange-500 text-lg font-mono leading-none">
                       {isOpened ? '−' : '+'}
                     </span>
                   </button>
                   {isOpened && (
-                    <div className="p-5 pt-0 text-xs sm:text-xs leading-relaxed text-black dark:text-black font-semibold border-t border-stone-150 dark:border-stone-200 animate-in slide-in-from-top-1">
+                    <div className="p-5 pt-0 text-xs sm:text-xs leading-relaxed text-black font-semibold border-t border-stone-150 animate-in slide-in-from-top-1">
                       {item.a}
                     </div>
                   )}

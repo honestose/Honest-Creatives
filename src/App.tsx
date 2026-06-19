@@ -14,13 +14,19 @@ import SendBriefView from './components/SendBriefView';
 import NewsView from './components/NewsView';
 import CmsView from './components/CmsView';
 import { ActiveTab } from './types';
-import { ArrowUp, MessageCircle, ShieldAlert } from 'lucide-react';
+import { ArrowUp, MessageCircle, ShieldAlert, X, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('home');
   const [loading, setLoading] = useState(true);
   const [showCookies, setShowCookies] = useState(false);
   const [customContent, setCustomContent] = useState<any>(null);
+  
+  // Newsletter modal states
+  const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [newsletterMsg, setNewsletterMsg] = useState('');
 
   const fetchCustomContent = async () => {
     try {
@@ -61,6 +67,57 @@ export default function App() {
       setShowCookies(true);
     }
   }, []);
+
+  // Trigger newsletter modal after 10 seconds of initial loading
+  useEffect(() => {
+    try {
+      const isDismissed = localStorage.getItem('hc_newsletter_dismissed');
+      if (!isDismissed) {
+        const timer = setTimeout(() => {
+          setShowNewsletterModal(true);
+        }, 10000); // 10 seconds
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      const timer = setTimeout(() => {
+        setShowNewsletterModal(true);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleNewsletterSubmit = (e: any) => {
+    e.preventDefault();
+    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+      setNewsletterStatus('error');
+      setNewsletterMsg('Please enter a valid email address.');
+      return;
+    }
+
+    setNewsletterStatus('submitting');
+    setTimeout(() => {
+      setNewsletterStatus('success');
+      setNewsletterMsg('Thank you for subscribing! Welcome to the Circle.');
+      try {
+        localStorage.setItem('hc_newsletter_dismissed', 'true');
+      } catch (err) {
+        console.warn('Persistence storage issues:', err);
+      }
+      setNewsletterEmail('');
+      setTimeout(() => {
+        setShowNewsletterModal(false);
+      }, 2500);
+    }, 1200);
+  };
+
+  const dismissNewsletterModal = () => {
+    setShowNewsletterModal(false);
+    try {
+      localStorage.setItem('hc_newsletter_dismissed', 'true');
+    } catch (err) {
+      console.warn('Persistence storage issues:', err);
+    }
+  };
 
   const handleAcceptCookies = (status: 'all' | 'essential') => {
     try {
@@ -278,6 +335,93 @@ export default function App() {
               >
                 Accept
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Non-intrusive Minimalist Newsletter Overlaid Modal */}
+      {showNewsletterModal && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-[99999] animate-in fade-in duration-300"
+          id="newsletter-modal-overlay"
+        >
+          <div 
+            className={`relative w-full max-w-sm p-6 sm:p-8 rounded-sm border shadow-2xl animate-in scale-in duration-200 ${
+              theme === 'dark' ? 'bg-neutral-900 border-neutral-800 text-white shadow-black/60' : 'bg-white border-stone-250 text-black shadow-stone-300/40'
+            }`}
+            id="newsletter-modal-box"
+          >
+            {/* Close button icon */}
+            <button
+              onClick={dismissNewsletterModal}
+              className={`absolute top-4 right-4 p-1 rounded-sm transition-colors border hover:text-orange-500 hover:border-orange-500 cursor-pointer ${
+                theme === 'dark' ? 'border-neutral-800 text-stone-400' : 'border-stone-200 text-stone-500'
+              }`}
+              id="newsletter-modal-close-btn"
+              aria-label="Close newsletter subscription modal"
+            >
+              <X size={12} className="stroke-[2.5]" />
+            </button>
+
+            <div className="space-y-4 text-left">
+              <span className="text-[10px] font-mono tracking-widest text-orange-500 font-extrabold uppercase bg-orange-50 dark:bg-orange-950/20 px-2 py-0.5 rounded-sm inline-block">
+                HONEST INSIGHTS
+              </span>
+              <h3 className={`text-lg sm:text-xl font-bold font-display tracking-tight leading-snug ${theme === 'dark' ? 'text-white' : 'text-neutral-950'}`}>
+                Join the <span className="text-orange-500">Honest Creatives</span> Circle
+              </h3>
+              <p className={`text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-stone-700 font-medium'}`}>
+                Subscribe to get clean, actionable articles on design systems, custom site speed strategy, and organic marketing directly to your inbox.
+              </p>
+
+              {newsletterStatus === 'success' ? (
+                <div className="bg-orange-500/10 border border-orange-500/20 text-orange-500 p-4 rounded-sm flex gap-3 items-start text-xs animate-in fade-in duration-250" id="modal-success-box">
+                  <span className="text-orange-500 text-base leading-none font-sans font-black">✓</span>
+                  <div className="flex-1 text-left space-y-0.5">
+                    <span className="font-bold block uppercase text-[10px] font-mono tracking-wider">MEMBER JOINED</span>
+                    <p className="text-[11px] leading-relaxed font-semibold">{newsletterMsg}</p>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="space-y-3" id="modal-newsletter-form">
+                  <div className="space-y-1.5">
+                    <label htmlFor="modal-email-input" className="sr-only">Email address</label>
+                    <input
+                      type="email"
+                      id="modal-email-input"
+                      value={newsletterEmail}
+                      onChange={(e) => {
+                        setNewsletterEmail(e.target.value);
+                        if (newsletterStatus === 'error') setNewsletterStatus('idle');
+                      }}
+                      placeholder="Enter your email address"
+                      className="w-full bg-stone-50/50 dark:bg-black/40 text-black dark:text-white px-3.5 py-3 rounded-sm border-2 border-stone-200 dark:border-neutral-850 focus:border-orange-500 focus:outline-none text-xs font-medium placeholder-stone-400 dark:placeholder-neutral-700 transition-all font-sans"
+                      required
+                      disabled={newsletterStatus === 'submitting'}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-orange-500/50 text-white font-mono uppercase font-bold text-xs tracking-wider py-3.5 rounded-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+                    disabled={newsletterStatus === 'submitting'}
+                    id="modal-cta-subscribe-btn"
+                  >
+                    {newsletterStatus === 'submitting' ? 'Registering...' : 'Stay Updated'}
+                  </button>
+
+                  {newsletterStatus === 'error' && (
+                    <p className="text-[10px] text-red-500 font-bold font-mono text-left animate-in fade-in" id="modal-error-message">
+                      ⚠ {newsletterMsg}
+                    </p>
+                  )}
+
+                  <p className="text-[9px] text-stone-500 font-mono">
+                    Zero credit traps. Unsubscribe with 1 click anytime.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>

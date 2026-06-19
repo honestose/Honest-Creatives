@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, ChevronDown, Mail, Phone, MapPin, Globe, Sun, Moon, Send } from 'lucide-react';
+import { Menu, X, ChevronDown, Mail, Phone, Globe, Sun, Moon, Send, Facebook, Instagram, Youtube } from 'lucide-react';
 import { ActiveTab } from '../types';
 import logoImage from '../assets/images/honest_creatives_logo_1781788567728.jpg';
 
@@ -48,10 +48,22 @@ export default function Header({ activeTab, setActiveTab, theme = 'light', toggl
             </a>
           </div>
           <div className="flex gap-4 items-center justify-center">
-            <span className="flex items-center gap-1 text-stone-400">
-              <MapPin size={11} className="text-orange-500" />
-              <span>Lagos, Nigeria</span>
-            </span>
+            <div className="flex items-center gap-3 text-stone-400 border-r border-stone-800 pr-4 mr-0.5">
+              <a href="https://facebook.com/honestwebsolutions" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors hover:scale-110" aria-label="Facebook">
+                <Facebook size={12} />
+              </a>
+              <a href="https://instagram.com/honestwebsolutions" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors hover:scale-110" aria-label="Instagram">
+                <Instagram size={12} />
+              </a>
+              <a href="http://tiktok.com/@honestose" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors hover:scale-110 flex items-center" aria-label="TikTok">
+                <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.95 1.15 2.2 1.95 3.59 2.37.01 1.34 0 2.68-.01 4.02-1.58-.02-3.13-.53-4.43-1.46-.86-.61-1.55-1.42-1.95-2.38v8.61c.01 5.09-4.52 9.06-9.61 8.52-3.87-.41-6.84-3.76-6.87-7.66-.04-4.82 4.19-8.77 9-.8.01 1.32.01 2.65-.01 3.97-1.39-.02-2.82.52-3.76 1.55-.91.99-1.22 2.37-1.02 3.69.24 1.59 1.63 2.76 3.25 2.76 1.14 0 2.19-.59 2.79-1.57.48-.77.71-1.68.7-2.61V0h.03z"/>
+                </svg>
+              </a>
+              <a href="https://youtube.com/@honestwebsolutions" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors hover:scale-110" aria-label="YouTube">
+                <Youtube size={12} />
+              </a>
+            </div>
             
             {/* Dark & Light Theme Switch at the Top - Desktop Area */}
             {toggleTheme && (

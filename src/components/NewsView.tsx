@@ -58,7 +58,7 @@ export default function NewsView({ theme = 'light' }: NewsViewProps) {
             <span className="text-orange-500">Tori</span>
           </h1>
           <div className="w-16 h-1 bg-orange-500 mx-auto rounded-full mt-2"></div>
-          <p className={`text-sm max-w-xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-stone-850 font-medium'}`}>
+          <p className={`text-sm max-w-xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'}`}>
             Welcome to "Tori" — the primary gossip feed, agency stories, news reviews, and tech happenings compiled live across local landscapes and digital networks.
           </p>
 
@@ -106,7 +106,7 @@ export default function NewsView({ theme = 'light' }: NewsViewProps) {
                     {news.title}
                   </h3>
 
-                  <p className={`text-xs mt-2.5 leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-stone-800'}`}>
+                  <p className={`text-xs mt-2.5 leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-black font-semibold'}`}>
                     {news.excerpt}
                   </p>
 
